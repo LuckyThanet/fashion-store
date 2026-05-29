@@ -1,0 +1,19 @@
+name: Create Deployment Record (Vercel)
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  create-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create GitHub deployment record
+        uses: peter-evans/create-deployment@v2
+        with:
+          environment: production
+          transient-environment: "false"
+          production-environment: "true"
+          payload: '{"url":"https://fashion-store-two-pi.vercel.app"}'
